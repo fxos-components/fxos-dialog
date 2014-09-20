@@ -214,6 +214,7 @@ var template = `
 
 .shadow-content section {
   padding: 33px 16px;
+  color: #858585;
 }
 
 .shadow-content button {

@@ -78,15 +78,13 @@ gaia-dialog-prompt.animating {
   height: 100%;
 }
 
-section {
-  padding: 16px !important;
+gaia-text-input {
+  margin: 16px;
 }
 </style>
 
 <gaia-dialog>
-  <section>
-    <gaia-text-input></gaia-text-input>
-  </section>
+  <gaia-text-input></gaia-text-input>
   <fieldset>
     <button class="cancel">Cancel</button>
     <button class="submit">Ok</button>
