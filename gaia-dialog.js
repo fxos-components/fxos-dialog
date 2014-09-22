@@ -196,15 +196,15 @@ var template = `
 
 .window.animate-in {
   animation-name: gaia-dialog-entrance;
-  animation-duration: 200ms;
+  animation-duration: 300ms;
   animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.275);
   animation-fill-mode: forwards
 }
 
 .window.animate-out {
   animation-name: gaia-dialog-fade-out;
-  animation-delay: 100ms;
   animation-duration: 200ms;
+  animation-delay: 100ms;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
   opacity: 1;
