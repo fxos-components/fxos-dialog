@@ -208,6 +208,7 @@ gaia-dialog:not([multiple]) .cancel:after {
   display: block;
   margin-top: -12px;
   font-family: 'gaia-icons';
+  font-style: normal;
   font-size: 14px;
   font-weight: 500;
   text-rendering: optimizeLegibility;
