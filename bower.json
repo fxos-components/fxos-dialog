@@ -15,5 +15,8 @@
     "test",
     "tests",
     "README.md"
-  ]
+  ],
+  "dependencies": {
+    "gaia-text-input": "gaia-components/gaia-text-input"
+  }
 }
