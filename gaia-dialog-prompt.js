@@ -52,7 +52,7 @@ gaia-dialog-prompt.animating {
 }
 
 gaia-text-input {
-  margin: 16px;
+  margin: 16px !important;
 }
 </style>
 
