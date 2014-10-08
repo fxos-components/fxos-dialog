@@ -313,6 +313,10 @@ var template = `
   transition-delay: 300ms;
 }
 
+.shadow-content button.primary {
+  color: var(--highlight-color);
+}
+
 /** Button Divider Line
  ---------------------------------------------------------*/
 

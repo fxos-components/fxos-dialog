@@ -57,10 +57,10 @@ gaia-text-input {
 </style>
 
 <gaia-dialog>
-  <gaia-text-input></gaia-text-input>
+  <div><gaia-text-input></gaia-text-input></div>
   <fieldset>
     <button class="cancel">Cancel</button>
-    <button class="submit">Ok</button>
+    <button class="submit primary">Ok</button>
   </fieldset>
 </gaia-dialog>`;
 
