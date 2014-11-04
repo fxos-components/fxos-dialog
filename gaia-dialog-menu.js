@@ -9,6 +9,17 @@
 var GaiaDialog = require('gaia-dialog');
 
 /**
+ * Detects presence of shadow-dom
+ * CSS selectors.
+ *
+ * @return {Boolean}
+ */
+var hasShadowCSS = (function() {
+  try { document.querySelector(':host'); return true; }
+  catch (e) { return false; }
+})();
+
+/**
  * Extend from the `HTMLElement` prototype
  *
  * @type {Object}
@@ -32,41 +43,44 @@ proto.createdCallback = function() {
 
 proto.template = `
 <style>
-.shadow-host {
+:host {
   display: none;
 }
 
-.shadow-host[opened],
-.shadow-host.animating {
+:host[opened],
+:host.animating {
   display: block;
   position: fixed;
   width: 100%;
   height: 100%;
 }
 
-/** Button
- ---------------------------------------------------------*/
-
-.shadow-content section {
-  padding: 33px 16px;
-}
-
-.shadow-content button {
+::content > button {
   position: relative;
   display: block;
   width: 100%;
   height: 50px;
+  line-height: 50px;
   margin: 0;
   border: 0;
-  padding: 0rem 25px;
+  padding: 0rem 16px;
   font: inherit;
+  font-style: italic;
+  text-align: left;
   background: var(--color-beta);
-  color: var(--color-epsilon);
-  transition: all 200ms;
-  transition-delay: 300ms;
+  color: var(--highlight-color);
 }
 
-.shadow-content button:after {
+::content > button[data-icon]:before {
+  margin-right: 15px;
+  font-size: 22px;
+  vertical-align: middle;
+}
+
+/** Button Divider Line
+ ---------------------------------------------------------*/
+
+::content > button:after {
   content: '';
   display: block;
   position: absolute;
@@ -77,35 +91,30 @@ proto.template = `
   background: #E7E7E7;
 }
 
-.shadow-content button:last-child:after {
+::content > button:last-of-type:after {
   display: none;
 }
 
-.shadow-content button:active {
-  background-color: var(--highlight-color);
-  color: #fff;
-  transition: none;
-}
-
-.shadow-content button:active:after {
-  background: var(--highlight-color);
-  transition: none;
-}
 </style>
 
 <gaia-dialog>
-  <section>
-    <content select="h1"></content>
-  </section>
-  <content select="button"></content>
-  <button class="cancel">Cancel</button>
+  <div class="items"><content select="button"></content></div>
 </gaia-dialog>`;
 
+// If the browser doesn't support shadow-css
+// selectors yet, we update the template
+// to use the shim classes instead.
+if (!hasShadowCSS) {
+  proto.template = proto.template
+    .replace('::content', 'gaia-dialog-menu.shadow-content', 'g')
+    .replace(':host', 'gaia-dialog-menu.shadow-host', 'g');
+}
+
 // Register and expose the constructor
-module.exports = document.registerElement('gaia-dialog-action', { prototype: proto });
+module.exports = document.registerElement('gaia-dialog-menu', { prototype: proto });
 module.exports.proto = proto;
 
 });})(typeof define=='function'&&define.amd?define
 :(function(n,w){'use strict';return typeof module=='object'?function(c){
 c(require,exports,module);}:function(c){var m={exports:{}};c(function(n){
-return w[n];},m.exports,m);w[n]=m.exports;};})('gaia-dialog-action',this));
+return w[n];},m.exports,m);w[n]=m.exports;};})('gaia-dialog-menu',this));
