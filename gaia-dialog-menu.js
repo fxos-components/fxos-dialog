@@ -72,9 +72,11 @@ proto.template = `
 }
 
 ::content > button[data-icon]:before {
-  margin-right: 15px;
+  width: 50px;
   font-size: 22px;
+  margin-left: -16px;
   vertical-align: middle;
+  text-align: center;
 }
 
 /** Button Divider Line
