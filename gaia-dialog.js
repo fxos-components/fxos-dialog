@@ -190,6 +190,17 @@ var template = `
 
 .shadow-content * {
   box-sizing: border-box;
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+.shadow-content p,
+.shadow-content h1,
+.shadow-content h2,
+.shadow-content h3,
+.shadow-content h4,
+.shadow-content button,
+.shadow-content fieldset {
   padding: 0;
   margin: 0;
   border: 0;
@@ -234,21 +245,33 @@ var template = `
   background: rgba(199,199,199,0.85);
 }
 
+/**
+ * .circular
+ */
+
 .background.circular {
   width: 40px;
   height: 40px;
   margin: -20px;
   border-radius: 50%;
-  will-change: transform;
+  will-change: transform, opacity;
   transition-property: opacity, transform;
   transition-timing-function: linear;
 }
+
+/**
+ * .animate-in
+ */
 
 .background.animate-in {
   animation-name: gaia-dialog-fade-in;
   animation-duration: 300ms;
   animation-fill-mode: forwards;
 }
+
+/**
+ * .animate-out
+ */
 
 .background.animate-out {
   animation-name: gaia-dialog-fade-out;
@@ -299,12 +322,31 @@ var template = `
   color: #858585;
 }
 
+.shadow-content strong {
+  font-weight: 700;
+}
+
+.shadow-content small {
+  font-size: 0.8em;
+}
+
 /** Section
  ---------------------------------------------------------*/
 
 .shadow-content section {
-  padding: 33px 16px;
+  padding: 33px 18px;
   color: #858585;
+}
+
+.shadow-content section > *:not(:last-child) {
+  margin-bottom: 13px;
+}
+
+/** Paragraphs
+ ---------------------------------------------------------*/
+
+.shadow-content p {
+  text-align: left;
 }
 
 /** Buttons
@@ -318,6 +360,7 @@ var template = `
   margin: 0;
   border: 0;
   padding: 0rem 16px;
+  cursor: pointer;
   font: inherit;
   background: var(--color-beta);
   color: var(--color-epsilon);
