@@ -1,5 +1,7 @@
 ;(function(define){define(function(require,exports,module){
+/*jshint laxbreak:true*/
 /*jshint esnext:true*/
+
 'use strict';
 
 /**
