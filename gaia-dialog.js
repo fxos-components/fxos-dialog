@@ -34,9 +34,16 @@ proto.createdCallback = function() {
     window: this.shadowRoot.querySelector('.window')
   };
 
-  this.els.background.addEventListener('click', this.close.bind(this));
+  this.shadowRoot.addEventListener('click', e => this.onClick(e));
   this.setupAnimationListeners();
   this.styleHack();
+};
+
+proto.onClick = function(e) {
+  var el = closest('[on-click]', e.target, this);
+  if (!el) { return; }
+  var method = el.getAttribute('on-click');
+  if (typeof this[method] == 'function') this[method]();
 };
 
 proto.setupAnimationListeners = function() {
@@ -447,30 +454,10 @@ var template = `
   transition-delay: 200ms;
 }
 
-/** Icons
- ---------------------------------------------------------*/
-
-/**
- * We need this rule to make data-icon
- * attributes work on elements behind
- * the shadow-boundary. Specifically
- * for <gaia-toolbar>
- */
-
-// [data-icon]:before {
-//   font-family: "gaia-icons";
-//   content: attr(data-icon);
-//   display: block;
-//   font-weight: 500;
-//   font-style: normal;
-//   text-rendering: optimizeLegibility;
-//   font-size: 30px;
-// }
-
 </style>
 
 <div class="dialog-inner">
-  <div class="background"></div>
+  <div class="background" on-click="close"></div>
   <div class="window"><content></content></div>
 </div>`;
 
@@ -548,6 +535,12 @@ var extended = {
     removeAttribute.call(this, attr);
   }
 };
+
+function closest(selector, el, top) {
+  return el && el !== top
+    ? (el.matches(selector) ? el : closest(el.parentNode))
+    : null;
+}
 
 function mixin(a, b) {
   for (var key in b) { a[key] = b[key]; }
