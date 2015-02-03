@@ -8,13 +8,12 @@
 
 var GetTextInput = require('gaia-text-input');
 var GaiaDialog = require('gaia-dialog');
+var component = require('gaia-component');
 
-/**
- * Extend from `GaiaDialog` prototype
- *
- * @type {Object}
- */
-var proto = GaiaDialog.extend();
+// Register and expose the constructor
+module.exports = component.register('gaia-dialog-prompt', {
+
+extends: GaiaDialog,
 
 /**
  * Runs when an instance of `GaiaTabs`
@@ -25,7 +24,7 @@ var proto = GaiaDialog.extend();
  *
  * @private
  */
-proto.createdCallback = function() {
+created: function() {
   this.onCreated();
 
   this.els.input = this.shadowRoot.querySelector('gaia-text-input');
@@ -35,9 +34,9 @@ proto.createdCallback = function() {
   this.els.input.placeholder = this.firstChild.textContent;
   this.els.cancel.addEventListener('click', this.close.bind(this));
   this.els.submit.addEventListener('click', this.close.bind(this));
-};
+},
 
-proto.template = `
+template: `
 <style>
 gaia-dialog-prompt {
   display: none;
@@ -62,11 +61,9 @@ gaia-text-input {
     <button class="cancel">Cancel</button>
     <button class="submit primary">Ok</button>
   </fieldset>
-</gaia-dialog>`;
+</gaia-dialog>`
+});
 
-// Register and expose the constructor
-module.exports = document.registerElement('gaia-dialog-prompt', { prototype: proto });
-module.exports.proto = proto;
 
 });})(typeof define=='function'&&define.amd?define
 :(function(n,w){'use strict';return typeof module=='object'?function(c){

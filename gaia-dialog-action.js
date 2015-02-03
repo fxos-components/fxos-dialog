@@ -6,14 +6,13 @@
  * Dependencies
  */
 
+var component = require('gaia-component');
 var GaiaDialog = require('gaia-dialog');
 
-/**
- * Extend from the `HTMLElement` prototype
- *
- * @type {Object}
- */
-var proto = GaiaDialog.extend();
+// Register and expose the constructor
+module.exports = component.register('gaia-dialog-action', {
+
+extends: GaiaDialog,
 
 /**
  * Runs when an instance of `GaiaTabs`
@@ -24,13 +23,13 @@ var proto = GaiaDialog.extend();
  *
  * @private
  */
-proto.createdCallback = function() {
+created: function() {
   this.onCreated();
   this.els.submit = this.shadowRoot.querySelector('.submit');
   this.els.cancel = this.shadowRoot.querySelector('.cancel');
-};
+},
 
-proto.template = `
+template: `
 <style>
 .shadow-host {
   display: none;
@@ -99,11 +98,9 @@ proto.template = `
   </section>
   <content select="button"></content>
   <button class="cancel">Cancel</button>
-</gaia-dialog>`;
+</gaia-dialog>`
+});
 
-// Register and expose the constructor
-module.exports = document.registerElement('gaia-dialog-action', { prototype: proto });
-module.exports.proto = proto;
 
 });})(typeof define=='function'&&define.amd?define
 :(function(n,w){'use strict';return typeof module=='object'?function(c){
