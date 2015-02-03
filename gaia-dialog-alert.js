@@ -6,10 +6,13 @@
  * Dependencies
  */
 
+var component = require('gaia-component');
 var GaiaDialog = require('gaia-dialog');
 
+// Register and expose the constructor
+module.exports = component.register('gaia-dialog-alert', {
 
-var proto = GaiaDialog.extend();
+extends: GaiaDialog,
 
 /**
  * Runs when an instance of `GaiaTabs`
@@ -20,13 +23,13 @@ var proto = GaiaDialog.extend();
  *
  * @private
  */
-proto.createdCallback = function() {
+created: function() {
   this.onCreated();
   this.els.submit = this.shadowRoot.querySelector('.submit');
   this.els.submit.addEventListener('click', this.close.bind(this));
-};
+},
 
-proto.template = `
+template: `
 <style>
 .shadow-host {
   display: none;
@@ -48,11 +51,8 @@ proto.template = `
   <div>
     <button class="submit primary">Ok</button>
   </div>
-</gaia-dialog>`;
-
-// Register and expose the constructor
-module.exports = document.registerElement('gaia-dialog-alert', { prototype: proto });
-module.exports.proto = proto;
+</gaia-dialog>`
+});
 
 });})(typeof define=='function'&&define.amd?define
 :(function(n,w){'use strict';return typeof module=='object'?function(c){

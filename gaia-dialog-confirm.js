@@ -6,14 +6,13 @@
  * Dependencies
  */
 
+var component = require('gaia-component');
 var GaiaDialog = require('gaia-dialog');
 
-/**
- * Extend from the `HTMLElement` prototype
- *
- * @type {Object}
- */
-var proto = GaiaDialog.extend();
+// Register and expose the constructor
+module.exports = component.register('gaia-dialog-confirm', {
+
+extends: GaiaDialog,
 
 /**
  * Runs when an instance of `GaiaTabs`
@@ -24,7 +23,7 @@ var proto = GaiaDialog.extend();
  *
  * @private
  */
-proto.createdCallback = function() {
+created: function() {
   this.onCreated();
 
   this.els.submit = this.shadowRoot.querySelector('.submit');
@@ -32,9 +31,9 @@ proto.createdCallback = function() {
 
   this.els.cancel.addEventListener('click', this.close.bind(this));
   this.els.submit.addEventListener('click', this.close.bind(this));
-};
+},
 
-proto.template = `
+template: `
 <style>
 .shadow-host {
   display: none;
@@ -57,11 +56,8 @@ proto.template = `
     <button class="cancel">Cancel</button>
     <button class="submit danger">Confirm</button>
   </fieldset>
-</gaia-dialog>`;
-
-// Register and expose the constructor
-module.exports = document.registerElement('gaia-dialog-confirm', { prototype: proto });
-module.exports.proto = proto;
+</gaia-dialog>`
+});
 
 });})(typeof define=='function'&&define.amd?define
 :(function(n,w){'use strict';return typeof module=='object'?function(c){

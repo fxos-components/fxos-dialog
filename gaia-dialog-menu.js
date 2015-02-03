@@ -3,12 +3,6 @@
 'use strict';
 
 /**
- * Dependencies
- */
-
-var GaiaDialog = require('gaia-dialog');
-
-/**
  * Detects presence of shadow-dom
  * CSS selectors.
  *
@@ -20,11 +14,16 @@ var hasShadowCSS = (function() {
 })();
 
 /**
- * Extend from the `HTMLElement` prototype
- *
- * @type {Object}
+ * Dependencies
  */
-var proto = GaiaDialog.extend();
+
+var GaiaDialog = require('gaia-dialog');
+var component = require('gaia-component');
+
+// Register and expose the constructor
+module.exports = component.register('gaia-dialog-menu', {
+
+extends: GaiaDialog,
 
 /**
  * Runs when an instance of `GaiaTabs`
@@ -35,13 +34,13 @@ var proto = GaiaDialog.extend();
  *
  * @private
  */
-proto.createdCallback = function() {
+created: function() {
   this.onCreated();
   this.els.submit = this.shadowRoot.querySelector('.submit');
   this.els.cancel = this.shadowRoot.querySelector('.cancel');
-};
+},
 
-proto.template = `
+template: `
 <style>
 :host {
   display: none;
@@ -101,20 +100,20 @@ proto.template = `
 
 <gaia-dialog>
   <div class="items"><content select="button"></content></div>
-</gaia-dialog>`;
+</gaia-dialog>`
+});
 
 // If the browser doesn't support shadow-css
 // selectors yet, we update the template
 // to use the shim classes instead.
+/* TODO:
 if (!hasShadowCSS) {
   proto.template = proto.template
     .replace('::content', 'gaia-dialog-menu.shadow-content', 'g')
     .replace(':host', 'gaia-dialog-menu.shadow-host', 'g');
 }
+*/
 
-// Register and expose the constructor
-module.exports = document.registerElement('gaia-dialog-menu', { prototype: proto });
-module.exports.proto = proto;
 
 });})(typeof define=='function'&&define.amd?define
 :(function(n,w){'use strict';return typeof module=='object'?function(c){

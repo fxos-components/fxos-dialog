@@ -6,17 +6,15 @@
  * Dependencies
  */
 
-var GaiaDialog = require('gaia-dialog');
-
 // Load icon-font
 require('gaia-icons');
+var GaiaDialog = require('gaia-dialog');
+var component = require('gaia-component');
 
-/**
- * Extend from `GaiaDialog` prototype
- *
- * @type {Object}
- */
-var proto = GaiaDialog.extend();
+// Register and expose the constructor
+module.exports = component.register('gaia-dialog-select', {
+
+extends: GaiaDialog,
 
 /**
  * Runs when an instance of `GaiaTabs`
@@ -27,7 +25,7 @@ var proto = GaiaDialog.extend();
  *
  * @private
  */
-proto.createdCallback = function() {
+created: function() {
   this.onCreated();
 
   this.els.submit = this.shadowRoot.querySelector('.submit');
@@ -39,40 +37,40 @@ proto.createdCallback = function() {
   on(this.els.list, 'click', this.onListClick, this);
   on(this.els.submit, 'click', this.close, this);
   on(this.els.cancel, 'click', this.close, this);
-};
+},
 
-proto.onListClick = function(e) {
+onListClick: function(e) {
   var el = getLi(e.target);
   var selected = el.getAttribute('aria-selected') === 'true';
 
   if (this.multiple) { this.onChangeMultiple(el, selected); }
   else { this.onChange(el, selected); }
-};
+},
 
-proto.onChange = function(el, selected) {
+onChange: function(el, selected) {
   this.clearSelected();
   if (!selected) { el.setAttribute('aria-selected', !selected); }
   this.fireChange();
   this.close();
-};
+},
 
-proto.onChangeMultiple = function(el, selected) {
+onChangeMultiple: function(el, selected) {
   el.setAttribute('aria-selected', !selected);
   this.fireChange();
-};
+},
 
-proto.clearSelected = function() {
+clearSelected: function() {
   [].forEach.call(this.selectedOptions, function(option) {
     option.removeAttribute('aria-selected');
   });
-};
+},
 
-proto.fireChange = function() {
+fireChange: function() {
   var e = new CustomEvent('change', { detail: { value: this.valueString }});
   this.dispatchEvent(e);
-};
+},
 
-proto.attrs = {
+attrs: {
   multiple: {
     get: function() { return !!this._multiple; },
     set: function(value) {
@@ -80,7 +78,7 @@ proto.attrs = {
       if (value === this._multiple) { return; }
       if (!value) {
         this._multiple = false;
-        this.removeAttribute('multiple');
+        this.removeAttr('multiple');
       } else {
         this._multiple = true;
         this.setAttribute('multiple', '');
@@ -117,11 +115,9 @@ proto.attrs = {
   length: {
     get: function() { return this.options.length; }
   }
-};
+},
 
-Object.defineProperties(proto, proto.attrs);
-
-proto.template = `
+template: `
 <style>
 .shadow-host {
   display: none;
@@ -228,7 +224,8 @@ gaia-dialog:not([multiple]) .cancel:after {
     <button class="cancel">Cancel</button>
     <button class="submit primary">Select</button>
   </fieldset>
-</gaia-dialog>`;
+</gaia-dialog>`
+});
 
 
 function on(el, name, fn, ctx) {
@@ -240,10 +237,6 @@ function getLi(el) {
   return el && (el.tagName === 'LI' ? el : getLi(el.parentNode));
 }
 
-
-// Register and expose the constructor
-module.exports = document.registerElement('gaia-dialog-select', { prototype: proto });
-module.exports.proto = proto;
 
 });})(typeof define=='function'&&define.amd?define
 :(function(n,w){'use strict';return typeof module=='object'?function(c){

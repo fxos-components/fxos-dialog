@@ -5,16 +5,12 @@
 'use strict';
 
 /**
- * Extend from the `HTMLElement` prototype
- *
- * @type {Object}
+ * Dependencies
  */
-var proto = Object.create(HTMLElement.prototype);
+var component = require('gaia-component');
 
-var innerHTML = Object.getOwnPropertyDescriptor(Element.prototype, 'innerHTML');
-var removeAttribute = proto.removeAttribute;
-var setAttribute = proto.setAttribute;
-var has = Object.prototype.hasOwnProperty;
+// Register and expose the constructor
+module.exports = component.register('gaia-dialog', {
 
 /**
  * Runs when an instance of `GaiaTabs`
@@ -25,8 +21,8 @@ var has = Object.prototype.hasOwnProperty;
  *
  * @private
  */
-proto.createdCallback = function() {
-  this.createShadowRoot().innerHTML = template;
+created: function() {
+  this.setupShadowRoot();
 
   this.els = {
     inner: this.shadowRoot.querySelector('.dialog-inner'),
@@ -36,81 +32,60 @@ proto.createdCallback = function() {
 
   this.shadowRoot.addEventListener('click', e => this.onClick(e));
   this.setupAnimationListeners();
-  this.styleHack();
-};
+},
 
-proto.onClick = function(e) {
+onClick: function(e) {
   var el = closest('[on-click]', e.target, this);
   if (!el) { return; }
   var method = el.getAttribute('on-click');
   if (typeof this[method] == 'function') this[method]();
-};
+},
 
-proto.setupAnimationListeners = function() {
+setupAnimationListeners: function() {
   this.addEventListener('animationstart', this.onAnimationStart.bind(this));
   this.addEventListener('animationend', this.onAnimationEnd.bind(this));
-};
+},
 
-proto.styleHack = function() {
-  var style = this.shadowRoot.querySelector('style').cloneNode(true);
-  this.classList.add('shadow-content', 'shadow-host');
-  style.setAttribute('scoped', '');
-  this.appendChild(style);
-};
-
-proto.open = function(options) {
+open: function(options) {
   if (this.isOpen) { return; }
   this.animateIn(options);
   this.isOpen = true;
-  this.setAttribute('opened', '');
+  this.setAttr('opened', '');
   this.dispatch('opened');
-};
+},
 
-proto.close = function(options) {
+close: function(options) {
   if (!this.isOpen) { return; }
-  var self = this;
-  self.isOpen = false;
-  this.animateOut(function() {
-    self.removeAttribute('opened');
-    self.dispatch('closed');
+  this.isOpen = false;
+  this.animateOut(() => {
+    this.removeAttr('opened');
+    this.dispatch('closed');
   });
-};
+},
 
-proto.attributeChangedCallback = function(name, from, to) {
-  if (this.attrs[name]) { this[name] = to; }
-};
+attributeChanged: function(name, from, to) {
+  if (this[name]) { this[name] = to; }
+},
 
-proto.setAttribute = function(attr, value) {
-  this.els.inner.setAttribute(attr, value);
-  setAttribute.call(this, attr, value);
-};
-
-proto.removeAttribute = function(attr) {
-  this.els.inner.removeAttribute(attr);
-  removeAttribute.call(this, attr);
-};
-
-proto.animateIn = function(e) {
+animateIn: function(e) {
   var hasTarget = e && ('clientX' in e || e.touches);
   if (hasTarget) { return  this.animateInFromTarget(e); }
 
-  var self = this;
   this.dispatch('animationstart');
   this.els.background.classList.add('animate-in');
-  this.els.background.addEventListener('animationend', function fn() {
-    self.els.background.removeEventListener('animationend', fn);
-    self.els.window.classList.add('animate-in');
-    self.dispatch('animationend');
+  this.els.background.addEventListener('animationend', () => {
+    this.els.background.removeEventListener('animationend', fn);
+    this.els.window.classList.add('animate-in');
+    this.dispatch('animationend');
   });
-};
+},
 
-proto.animateInFromTarget = function(e) {
+animateInFromTarget: function(e) {
   var pos = e.touches && e.touches[0] || e;
   var scale = Math.sqrt(innerWidth * innerHeight) / 10;
   var background = this.els.background;
   var duration = scale * 7;
   var end = 'transitionend';
-  var self = this;
 
   background.style.transform = 'translate(' + pos.clientX + 'px, ' + pos.clientY + 'px)';
   background.style.transitionDuration = duration + 'ms';
@@ -122,17 +97,16 @@ proto.animateInFromTarget = function(e) {
   background.style.transform += ' scale(' + scale + ')';
   background.style.opacity = 1;
 
-  background.addEventListener(end, function fn() {
+  background.addEventListener(end, () => {
     background.removeEventListener(end, fn);
-    self.els.window.classList.add('animate-in');
-    self.dispatch('animationend');
+    this.els.window.classList.add('animate-in');
+    this.dispatch('animationend');
   });
-};
+},
 
-proto.animateOut = function(callback) {
+animateOut: function(callback) {
   var end = 'animationend';
   var background = this.els.background;
-  var self = this;
   var classes = {
     el: this.classList,
     window: this.els.window.classList,
@@ -142,35 +116,35 @@ proto.animateOut = function(callback) {
   this.dispatch('animationstart');
   classes.window.add('animate-out');
 
-  this.els.window.addEventListener(end, function fn(e) {
-    self.els.window.removeEventListener(end, fn);
+  this.els.window.addEventListener(end, e => {
+    this.els.window.removeEventListener(end, fn);
     e.stopPropagation();
     classes.background.add('animate-out');
-    self.els.background.addEventListener(end, function fn() {
-      self.els.background.removeEventListener(end, fn);
+    this.els.background.addEventListener(end, () => {
+      this.els.background.removeEventListener(end, fn);
       classes.window.remove('animate-out', 'animate-in');
       classes.background.remove('animate-out', 'animate-in');
       background.classList.remove('circular');
       background.style = '';
-      self.dispatch('animationend');
+      this.dispatch('animationend');
       if (callback) { callback(); }
     });
   });
-};
+},
 
-proto.onAnimationStart = function() {
+onAnimationStart: function() {
   this.classList.add('animating');
-};
+},
 
-proto.onAnimationEnd = function() {
+onAnimationEnd: function() {
   this.classList.remove('animating');
-};
+},
 
-proto.dispatch = function(name) {
+dispatch: function(name) {
   this.dispatchEvent(new CustomEvent(name));
-};
+},
 
-proto.attrs = {
+attrs: {
   opened: {
     get: function() { return !!this.isOpen; },
     set: function(value) {
@@ -179,22 +153,9 @@ proto.attrs = {
       else { this.open(); }
     }
   }
-};
+},
 
-Object.defineProperties(proto, proto.attrs);
-
-// Override `innerHTML` to prevent the scoped
-// stylesheet being erased by mistake.
-Object.defineProperty(proto, 'innerHTML', {
-  get: function() { return innerHTML.get.call(this); },
-  set: function(html) {
-    var style = this.querySelector('style');
-    innerHTML.set.call(this, html);
-    this.appendChild(style);
-  }
-});
-
-var template = `
+template: `
 <style>
 
 .shadow-content * {
@@ -459,9 +420,9 @@ var template = `
 <div class="dialog-inner">
   <div class="background" on-click="close"></div>
   <div class="window"><content></content></div>
-</div>`;
+</div>`,
 
-var animations = `
+globalCss: `
 @keyframes gaia-dialog-entrance {
   0% {
     opacity: 0;
@@ -482,59 +443,23 @@ var animations = `
 @keyframes gaia-dialog-fade-out {
   0% { opacity: 1 }
   100% { opacity: 0 }
-}`;
-
-(function() {
-  var style = document.createElement('style');
-  style.innerHTML = animations;
-  document.head.appendChild(style);
-})();
-
-// Register and expose the constructor
-module.exports = document.registerElement('gaia-dialog', { prototype: proto });
-module.exports.proto = proto;
+}`,
 
 
-module.exports.extend = function() {
-  return mixin(Object.create(proto), extended);
-};
+onCreated: function() {
+  this.createShadowRoot().innerHTML = this.template;
+  this.els = { dialog: this.shadowRoot.querySelector('gaia-dialog') };
+  this.setupAnimationListeners();
 
-var extended = {
-  onCreated: function() {
-    var self = this;
+  this.els.dialog.addEventListener('opened', () => {
+    this.setAttr.call('opened', '');
+  });
 
-    this.createShadowRoot().innerHTML = this.template;
-    this.els = { dialog: this.shadowRoot.querySelector('gaia-dialog') };
-    this.setupAnimationListeners();
-    this.styleHack();
-
-    this.els.dialog.addEventListener('opened', function() {
-      setAttribute.call(self, 'opened', '');
-    });
-
-    this.els.dialog.addEventListener('closed', function() {
-      removeAttribute.call(self, 'opened');
-    });
-  },
-
-  open: function(e) {
-    this.els.dialog.open(e);
-  },
-
-  close: function() {
-    this.els.dialog.close();
-  },
-
-  setAttribute: function(attr, value) {
-    this.els.dialog.setAttribute(attr, value);
-    setAttribute.call(this, attr, value);
-  },
-
-  removeAttribute: function(attr) {
-    this.els.dialog.removeAttribute(attr);
-    removeAttribute.call(this, attr);
-  }
-};
+  this.els.dialog.addEventListener('closed', () => {
+    this.removeAttr.call('opened');
+});
+}
+});
 
 function closest(selector, el, top) {
   return el && el !== top
