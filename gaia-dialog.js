@@ -500,8 +500,8 @@ var animations = `
   function headReady() {
     return new Promise(resolve => {
       if (document.head) { return resolve(); }
-      window.addEventlistener('load', function fn() {
-        window.removeEventlistener('load', fn);
+      window.addEventListener('load', function fn() {
+        window.removeEventListener('load', fn);
         resolve();
       });
     });
