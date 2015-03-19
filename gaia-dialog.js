@@ -510,13 +510,18 @@ var animations = `
 
 
 // Register and expose the constructor
-module.exports = document.registerElement('gaia-dialog', { prototype: proto });
-module.exports.proto = proto;
+try {
+  module.exports = document.registerElement('gaia-dialog', { prototype: proto });
+  module.exports.proto = proto;
 
-
-module.exports.extend = function() {
-  return mixin(Object.create(proto), extended);
-};
+  module.exports.extend = function() {
+    return mixin(Object.create(proto), extended);
+  };
+} catch (e) {
+  if (e.name !== 'NotSupportedError') {
+    throw e;
+  }
+}
 
 var extended = {
   onCreated: function() {
