@@ -377,6 +377,11 @@ var template = `
   transition-delay: 300ms;
 }
 
+.shadow-content button[disabled] {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
 /**
  * .primary
  */
