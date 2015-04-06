@@ -375,6 +375,7 @@ var template = `
   color: var(--color-epsilon);
   transition: all 200ms;
   transition-delay: 300ms;
+  border-radius: 0;
 }
 
 .shadow-content button[disabled] {
