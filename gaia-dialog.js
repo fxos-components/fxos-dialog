@@ -378,10 +378,6 @@ var template = `
   border-radius: 0;
 }
 
-.shadow-content button[disabled] {
-  color: var(--color-zeta);
-}
-
 /**
  * .primary
  */
@@ -396,6 +392,14 @@ var template = `
 
 .shadow-content button.danger {
   color: var(--color-destructive);
+}
+
+/**
+ * Disabled buttons
+ */
+
+.shadow-content button[disabled] {
+  color: var(--color-zeta);
 }
 
 /** Button Divider Line
