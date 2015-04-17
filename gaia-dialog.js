@@ -379,8 +379,7 @@ var template = `
 }
 
 .shadow-content button[disabled] {
-  pointer-events: none;
-  opacity: 0.5;
+  color: var(--color-zeta);
 }
 
 /**
