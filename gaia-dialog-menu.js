@@ -54,13 +54,9 @@ module.exports = component.register('gaia-dialog-menu', {
       padding: 0rem 16px;
       font: inherit;
       font-style: italic;
-      text-align: left;
+      text-align: start;
       background: var(--color-beta);
       color: var(--highlight-color);
-    }
-
-    :host-context([dir=rtl]) ::content > button {
-      text-align: right !important;
     }
 
     ::content > button[data-icon]:before {

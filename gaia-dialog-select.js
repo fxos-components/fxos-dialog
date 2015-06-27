@@ -132,11 +132,6 @@ module.exports = component.register('gaia-dialog-select', {
 
     :host {
       display: none;
-    }
-
-    :host[opened],
-    :host.animating {
-      display: block;
       position: fixed;
       width: 100%;
       height: 100%;
@@ -170,7 +165,7 @@ module.exports = component.register('gaia-dialog-select', {
       position: relative;
       display: block;
       padding: 16px;
-      text-align: -moz-start;
+      text-align: start;
       -moz-user-select: none;
       cursor: pointer;
     }
