@@ -5,7 +5,7 @@
  * Dependencies
  */
 
-require('gaia-dialog');
+var GaiaDialogProto = require('gaia-dialog').prototype;
 var component = require('gaia-component');
 
 /**
@@ -22,31 +22,24 @@ module.exports = component.register('gaia-dialog-select', {
       list: this.shadowRoot.querySelector('ul')
     };
 
-    this.els.dialog.addEventListener('opened', () => {
-      this.setAttribute('opened', '');
-    });
-
-    this.els.dialog.addEventListener('closed', () => {
-      this.removeAttribute('opened');
-    });
-
     this.multiple = this.hasAttribute('multiple');
-
     this.els.list.addEventListener('click', this.onListClick.bind(this));
     this.els.submit.addEventListener('click', this.close.bind(this));
     this.els.cancel.addEventListener('click', this.close.bind(this));
   },
 
   open: function(e) {
-    this.els.dialog.open(e);
+    return GaiaDialogProto.show.call(this)
+      .then(() => this.els.dialog.open(e));
   },
 
   close: function() {
-    this.els.dialog.close();
+    return GaiaDialogProto.show.call(this)
+      .then(() => this.els.dialog.close());
   },
 
   onListClick: function(e) {
-    var el = getLi(e.target);
+    var el = e.target.closest('li');
     var selected = el.getAttribute('aria-selected') === 'true';
 
     if (this.multiple) { this.onChangeMultiple(el, selected); }
@@ -235,10 +228,6 @@ module.exports = component.register('gaia-dialog-select', {
 
     </style>`
 });
-
-function getLi(el) {
-  return el && (el.tagName === 'LI' ? el : getLi(el.parentNode));
-}
 
 });})(typeof define=='function'&&define.amd?define
 :(function(n,w){'use strict';return typeof module=='object'?function(c){
