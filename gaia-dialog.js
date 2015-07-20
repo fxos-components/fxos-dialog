@@ -20,7 +20,7 @@ var debug = 0 ? console.log.bind(console) : () => {};
  */
 var schedule = window.scheduler || {
   mutation: block => Promise.resolve(block()),
-  transition(block, el, event, timeout) {
+  transition: (block, el, event, timeout) => {
     block();
     return after(el, event, timeout || 500);
   }
@@ -58,7 +58,8 @@ module.exports = component.register('gaia-dialog', {
 
     this.show()
       .then(() => this.animateBackgroundIn(options))
-      .then(() => this.animateWindowIn());
+      .then(() => this.animateWindowIn())
+      .then(() => this.dispatch('opened'));
   },
 
   close(options) {
@@ -68,7 +69,8 @@ module.exports = component.register('gaia-dialog', {
 
     this.animateWindowOut()
       .then(() => this.animateBackgroundOut())
-      .then(() => this.hide());
+      .then(() => this.hide())
+      .then(() => this.dispatch('closed'));
   },
 
   animateBackgroundIn(options) {
@@ -138,11 +140,14 @@ module.exports = component.register('gaia-dialog', {
 
   animateWindowOut() {
     var el = this.els.window;
-
     return schedule.transition(() => {
       debug('animate window out');
       el.classList.remove('animate-out', 'animate-in');
     }, el, 'animationend');
+  },
+
+  dispatch(name) {
+    this.dispatchEvent(new CustomEvent(name));
   },
 
   attrs: {
