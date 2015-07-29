@@ -135,6 +135,7 @@ module.exports = component.register('gaia-dialog', {
     return schedule.transition(() => {
       debug('animate window in');
       el.classList.add('animate-in');
+      el.classList.remove('animate-out');
     }, el, 'animationend');
   },
 
@@ -142,7 +143,8 @@ module.exports = component.register('gaia-dialog', {
     var el = this.els.window;
     return schedule.transition(() => {
       debug('animate window out');
-      el.classList.remove('animate-out', 'animate-in');
+      el.classList.add('animate-out');
+      el.classList.remove('animate-in');
     }, el, 'animationend');
   },
 
@@ -196,6 +198,8 @@ module.exports = component.register('gaia-dialog', {
       z-index: 200;
       font-style: italic;
       text-align: center;
+
+      overflow: hidden;
     }
 
     /** Inner
