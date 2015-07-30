@@ -17,6 +17,8 @@ module.exports = component.register('gaia-dialog-alert', {
     this.els = {
       dialog: this.shadowRoot.querySelector('gaia-dialog')
     };
+    this.els.dialog.addEventListener('closed',
+      GaiaDialogProto.hide.bind(this));
   },
 
   open: function(e) {
@@ -25,8 +27,8 @@ module.exports = component.register('gaia-dialog-alert', {
   },
 
   close: function() {
-    return GaiaDialogProto.show.call(this)
-      .then(() => this.els.dialog.close());
+    return this.els.dialog.close()
+      .then(GaiaDialogProto.hide.bind(this));
   },
 
   template: `
