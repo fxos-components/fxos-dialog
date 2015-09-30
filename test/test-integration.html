@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>gaia-dialog</title>
+  <meta name="description" content="Integration tests for gaia-dialog" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <link rel="stylesheet" href="../bower_components/gaia-theme/gaia-theme.css">
+  <link rel="stylesheet" href="../bower_components/gaia-fonts/style.css">
+  <link rel="stylesheet" href="../bower_components/base/base.css">
+  <link rel="stylesheet" href="../bower_components/gaia-icons/gaia-icons.css">
+  <script src="../bower_components/pressed/pressed.js"></script>
+  <script src="../bower_components/gaia-component/gaia-component.js"></script>
+  <script src="../bower_components/gaia-button/gaia-button.js"></script>
+  <script src="../bower_components/gaia-text-input/gaia-text-input.js"></script>
+  <script src="../gaia-dialog.js"></script>
+  <script src="../gaia-dialog-alert.js"></script>
+  <script src="../gaia-dialog-confirm.js"></script>
+  <script src="../gaia-dialog-prompt.js"></script>
+  <script src="../gaia-dialog-action.js"></script>
+  <script src="../gaia-dialog-select.js"></script>
+  <script src="../gaia-dialog-menu.js"></script>
+  <style>
+    body {
+      padding: 48px var(--base-m) 0 var(--base-m);
+      background-color: var(--background);
+    }
+  </style>
+</head>
+<body role="application">
+  <gaia-dialog id="d1">
+    <h1>Main Heading</h1>
+    <h2>Sub Heading</h2>
+    <p>Lorem ipsum dolor sit amet, ...</p>
+    <button on-click="close">Action</button>
+    <button on-click="close">Cancel</button>
+  </gaia-dialog>
+
+  <gaia-dialog-select id="d2">
+    <h1>Ring tone</h1>
+    <li>Classic prism</li>
+    <li>Wallphone</li>
+    <li>Disco drive</li>
+    <li>Touchmatic</li>
+    <li>Classic courier</li>
+    <li>Hacker</li>
+  </gaia-dialog-select>
+
+  <gaia-dialog-select multiple id="d3">
+    <h1>Ring tone</h1>
+    <li>Classic prism</li>
+    <li id="option">Wallphone</li>
+    <li>Disco drive</li>
+    <li>Touchmatic</li>
+    <li>Classic courier</li>
+    <li>Hacker</li>
+  </gaia-dialog-select>
+
+  <gaia-dialog-menu id="d4">
+    <button on-click="close" data-icon="firefox" aria-label="Open in new window">Open in new window</button>
+    <button on-click="close" id="menuitem" data-icon="firefox" aria-label="Add to Home Screen">Add to Home Screen</button>
+    <button on-click="close" data-icon="firefox" aria-label="Share link">Share link</button>
+    <button on-click="close" data-icon="firefox" aria-label="Settings">Settings</button>
+  </gaia-dialog-menu>
+</body>
+</html>
