@@ -60,6 +60,7 @@ module.exports = component.register('gaia-dialog-prompt', {
 
     :host {
       display: none;
+      z-index: 999;
     }
 
     :host[opened],

@@ -46,6 +46,10 @@ module.exports = component.register('gaia-dialog-alert', {
     :host {
       display: none;
       position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 999;
+
       width: 100%;
       height: 100%;
     }

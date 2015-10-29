@@ -200,14 +200,18 @@ module.exports = component.register('gaia-dialog', {
     :host {
       display: none;
       position: fixed;
-      top: 0px; left: 0px;
+      top: 0px;
+      left: 0px;
+      z-index: 200;
+
       width: 100%;
       height: 100%;
-      z-index: 200;
+      overflow: hidden;
+
+      font-size: 17px;
       font-style: italic;
       text-align: center;
-
-      overflow: hidden;
+      color: var(--text-color);
     }
 
     /** Inner
@@ -230,7 +234,7 @@ module.exports = component.register('gaia-dialog', {
       width: 100%;
       height: 100%;
       opacity: 0;
-      background: rgba(199,199,199,0.85);
+      background: var(--overlay-background, rgba(199,199,199,0.85));
     }
 
     /**
@@ -277,7 +281,7 @@ module.exports = component.register('gaia-dialog', {
       max-width: 350px;
       margin: auto;
       box-shadow: 0 1px 0 0px rgba(0,0,0,0.15);
-      background: var(--color-iota);
+      background: var(--background);
       transition: opacity 300ms;
       opacity: 0;
     }
@@ -307,7 +311,7 @@ module.exports = component.register('gaia-dialog', {
       line-height: 26px;
       font-weight: 200;
       font-style: italic;
-      color: #858585;
+      color: var(--title-color);
     }
 
     ::content strong {
@@ -323,7 +327,6 @@ module.exports = component.register('gaia-dialog', {
 
     ::content section {
       padding: 33px 18px;
-      color: #858585;
     }
 
     ::content section > *:not(:last-child) {
@@ -334,7 +337,8 @@ module.exports = component.register('gaia-dialog', {
      ---------------------------------------------------------*/
 
     ::content p {
-      text-align: -moz-start;
+      text-align: start;
+      line-height: 1.3em;
     }
 
     /** Buttons
@@ -347,11 +351,11 @@ module.exports = component.register('gaia-dialog', {
       height: 50px;
       margin: 0;
       border: 0;
-      padding: 0rem 16px;
+      padding: 0 16px;
       cursor: pointer;
       font: inherit;
-      background: var(--color-beta);
-      color: var(--color-epsilon);
+      background: var(--background-plus);
+      color: var(--text-color);
       transition: all 200ms;
       transition-delay: 300ms;
       border-radius: 0;
@@ -378,7 +382,7 @@ module.exports = component.register('gaia-dialog', {
      */
 
     ::content button[disabled] {
-      color: var(--color-zeta);
+      color: var(--text-color-minus);
     }
 
     /** Button Divider Line
@@ -392,7 +396,7 @@ module.exports = component.register('gaia-dialog', {
       left: 6px;
       right: 6px;
       top: 49px;
-      background: #E7E7E7;
+      background: var(--background);
     }
 
     ::content button:last-of-type:after {
@@ -437,7 +441,7 @@ module.exports = component.register('gaia-dialog', {
       left: auto;
       width: 1px;
       height: calc(100% - 12px);
-      background: #e7e7e7;
+      background: var(--background);
       transition: all 200ms;
       transition-delay: 200ms;
     }
