@@ -50,15 +50,13 @@ module.exports = component.register('gaia-dialog-confirm', {
     <style>
 
     :host {
-      display: none;
-    }
-
-    :host[opened],
-    :host.animating {
       display: block;
       position: fixed;
       width: 100%;
       height: 100%;
+      z-index: 999;
+
+      display: none;
     }
 
     </style>`

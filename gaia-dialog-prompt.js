@@ -59,16 +59,12 @@ module.exports = component.register('gaia-dialog-prompt', {
     <style>
 
     :host {
-      display: none;
-      z-index: 999;
-    }
-
-    :host[opened],
-    :host.animating {
-      display: block;
       position: fixed;
       width: 100%;
       height: 100%;
+      z-index: 999;
+
+      display: none;
     }
 
     gaia-text-input {

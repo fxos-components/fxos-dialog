@@ -53,6 +53,7 @@ module.exports = component.register('gaia-dialog-menu', {
       position: fixed;
       width: 100%;
       height: 100%;
+      z-index: 999;
     }
 
     ::content > button {

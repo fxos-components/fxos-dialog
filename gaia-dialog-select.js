@@ -151,6 +151,7 @@ module.exports = component.register('gaia-dialog-select', {
       position: fixed;
       width: 100%;
       height: 100%;
+      z-index: 999;
     }
 
     /** Title (duplicate from gaia-dialog)
