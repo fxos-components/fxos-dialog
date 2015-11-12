@@ -59,6 +59,10 @@ module.exports = component.register('gaia-dialog-confirm', {
       display: none;
     }
 
+    gaia-dialog section {
+      max-width: 320px;
+    }
+
     </style>`
 });
 

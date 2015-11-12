@@ -54,6 +54,10 @@ module.exports = component.register('gaia-dialog-alert', {
       height: 100%;
     }
 
+    gaia-dialog section {
+      max-width: 320px;
+    }
+
     </style>`
 });
 

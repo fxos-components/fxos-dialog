@@ -221,6 +221,9 @@ module.exports = component.register('gaia-dialog', {
       display: flex;
       width: 100%;
       height: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+
       align-items: center;
       justify-content: center;
     }
@@ -277,13 +280,19 @@ module.exports = component.register('gaia-dialog', {
 
     .window {
       position: relative;
-      width: 90%;
-      max-width: 350px;
+      width: 100%;
       margin: auto;
       box-shadow: 0 1px 0 0px rgba(0,0,0,0.15);
       background: var(--background);
       transition: opacity 300ms;
       opacity: 0;
+    }
+
+    @media (min-width: 360px) {
+      .window {
+        width: auto;
+        min-width: 320px;
+      }
     }
 
     .window.animate-in {

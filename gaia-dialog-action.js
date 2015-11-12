@@ -55,6 +55,10 @@ module.exports = component.register('gaia-dialog-action', {
       display: none;
     }
 
+    gaia-dialog section {
+      max-width: 320px;
+    }
+
     /** Button
      ---------------------------------------------------------*/
 
