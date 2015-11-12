@@ -358,7 +358,6 @@ module.exports = component.register('gaia-dialog', {
       display: block;
       width: 100%;
       height: 50px;
-      margin: 0;
       border: 0;
       padding: 0 16px;
       cursor: pointer;
