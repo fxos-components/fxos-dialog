@@ -1,6 +1,6 @@
 {
   "name": "gaia-dialog",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "homepage": "https://github.com/fxos-components/gaia-dialog",
   "license": "MIT",
   "main": "gaia-dialog.js",
