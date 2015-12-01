@@ -1,11 +1,11 @@
-# &lt;gaia-dialog&gt; [![](https://travis-ci.org/gaia-components/gaia-dialog.svg)](https://travis-ci.org/gaia-components/gaia-dialog) [![devDependency Status](https://david-dm.org/gaia-components/gaia-dialog/dev-status.svg)](https://david-dm.org/gaia-components/gaia-dialog#info=devDependencies)
+# &lt;gaia-dialog&gt; [![](https://travis-ci.org/fxos-components/gaia-dialog.svg)](https://travis-ci.org/fxos-components/gaia-dialog)
 
 gaia-dialog contains several type of dialogs, including alert, confirm, prompt, action, select, and menu.
 
 ## Installation
 
 ```bash
-$ bower install gaia-components/gaia-dialog
+$ bower install fxos-components/gaia-dialog
 ```
 
 ## Alert Dialog
@@ -126,7 +126,7 @@ Include folowing files in HTML
 
 ## Examples
 
-- [Example](http://gaia-components.github.io/gaia-dialog/)
+- [Example](http://fxos-components.github.io/gaia-dialog/)
 
 
 ## Tests
