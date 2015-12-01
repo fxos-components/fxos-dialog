@@ -27,5 +27,8 @@
     "gaia-text-input": "fxos-components/gaia-text-input",
     "gaia-icons": "fxos-components/gaia-icons#^1.0.0",
     "gaia-component": "fxos-components/gaia-component#0.6.0"
+  },
+  "resolutions": {
+    "gaia-component": "~0.6.0"
   }
 }

@@ -5,6 +5,7 @@
   "license": "MIT",
   "main": "gaia-dialog.js",
   "devDependencies": {
+    "bower": "^1.4.1",
     "chai": "^3.4.1",
     "jshint": "^2.9.1-rc1",
     "karma": "^0.13.15",
@@ -20,6 +21,7 @@
     "test-utils": "git://github.com/fxos-components/test-utils.git#v0.0.4"
   },
   "scripts": {
+    "postinstall": "bower install",
     "test-lint": "./node_modules/jshint/bin/jshint gaia-dialog*.js test/*.js",
     "test-unit": "./node_modules/karma/bin/karma start test/karma.conf.js --single-run",
     "test-integration": "./node_modules/.bin/marionette-mocha --reporter spec --host marionette-firefox-host --runtime $FIREFOX_NIGHTLY_BIN --timeout 6000s test/test-integration.js",
