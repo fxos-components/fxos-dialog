@@ -1,13 +1,18 @@
 'use strict';
+
 module.exports = function(config) {
   config.set({
-    frameworks: ['mocha', 'sinon-chai'],
+    basePath: '..',
     browsers: ['firefox_latest'],
     client: {
       captureConsole: true,
       mocha: {'ui': 'tdd'}
     },
-    basePath: '../',
+
+    frameworks: [
+      'mocha',
+      'chai-sinon'
+    ],
 
     customLaunchers: {
       firefox_latest: {
@@ -34,7 +39,7 @@ module.exports = function(config) {
       'gaia-dialog-action.js',
       'gaia-dialog-select.js',
       'gaia-dialog-menu.js',
-      'node_modules/test-utils/node_modules/axe-core/axe.min.js',
+      'node_modules/axe-core/axe.min.js',
       'node_modules/test-utils/src/utils.js',
       'node_modules/test-utils/src/accessibility.js',
       'test/test-unit.js',
