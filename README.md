@@ -1,26 +1,33 @@
-# &lt;gaia-dialog&gt; [![](https://travis-ci.org/fxos-components/gaia-dialog.svg)](https://travis-ci.org/fxos-components/gaia-dialog)
+# &lt;fxos-dialog&gt; [![](https://travis-ci.org/fxos-components/fxos-dialog.svg)](https://travis-ci.org/fxos-components/fxos-dialog)
 
-gaia-dialog contains several type of dialogs, including alert, confirm, prompt, action, select, and menu.
+Several types of dialogs, including alert, confirm, prompt, action, select, and menu.
 
 ## Installation
 
 ```bash
-$ bower install fxos-components/gaia-dialog
+$ npm install fxos-dialog
 ```
+
+## Platform dependencies
+
+- CSS Custom Properties
+- Custom Elements
+- Shadow DOM
 
 ## Alert Dialog
 
 Include folowing files in HTML
 
 ```html
-<script src="bower_components/gaia-list/gaia-dialog.js"></script>
-<script src="bower_components/gaia-list/gaia-dialog-alert.js"></script>
+<script src="node_modules/fxos-component/fxos-component.js"></script>
+<script src="node_modules/fxos-list/fxos-dialog.js"></script>
+<script src="node_modules/fxos-list/fxos-dialog-alert.js"></script>
 ```
 
 ### Usage
 
 ```html
-<gaia-dialog-alert>No SIM card is present</gaia-dialog-alert>
+<fxos-dialog-alert>No SIM card is present</fxos-dialog-alert>
 ```
 
 ## Confirm Dialog
@@ -28,14 +35,15 @@ Include folowing files in HTML
 Include folowing files in HTML
 
 ```html
-<script src="bower_components/gaia-list/gaia-dialog.js"></script>
-<script src="bower_components/gaia-list/gaia-dialog-confirm.js"></script>
+<script src="node_modules/fxos-component/fxos-component.js"></script>
+<script src="node_modules/fxos-list/fxos-dialog.js"></script>
+<script src="node_modules/fxos-list/fxos-dialog-confirm.js"></script>
 ```
 
 ### Usage
 
 ```html
-<gaia-dialog-confirm>Are you sure you want to delete this contact?</gaia-dialog-confirm>
+<fxos-dialog-confirm>Are you sure you want to delete this contact?</fxos-dialog-confirm>
 ```
 
 ## Prompt Dialog
@@ -43,14 +51,15 @@ Include folowing files in HTML
 Include folowing files in HTML
 
 ```html
-<script src="bower_components/gaia-list/gaia-dialog.js"></script>
-<script src="bower_components/gaia-list/gaia-dialog-prompt.js"></script>
+<script src="node_modules/fxos-component/fxos-component.js"></script>
+<script src="node_modules/fxos-list/fxos-dialog.js"></script>
+<script src="node_modules/fxos-list/fxos-dialog-prompt.js"></script>
 ```
 
 ### Usage
 
 ```html
-<gaia-dialog-prompt>Device name</gaia-dialog-prompt>
+<fxos-dialog-prompt>Device name</fxos-dialog-prompt>
 ```
 
 ## Action Dialog
@@ -58,18 +67,19 @@ Include folowing files in HTML
 Include folowing files in HTML
 
 ```html
-<script src="bower_components/gaia-list/gaia-dialog.js"></script>
-<script src="bower_components/gaia-list/gaia-dialog-action.js"></script>
+<script src="node_modules/fxos-component/fxos-component.js"></script>
+<script src="node_modules/fxos-list/fxos-dialog.js"></script>
+<script src="node_modules/fxos-list/fxos-dialog-action.js"></script>
 ```
 
 ### Usage
 
 ```html
-<gaia-dialog-action>
+<fxos-dialog-action>
   <h1>Descriptions...</h1>
   <button>Action 1</button>
   <button>Action 2</button>
-</gaia-dialog-action>
+</fxos-dialog-action>
 ```
 
 ## Select Dialog
@@ -77,30 +87,31 @@ Include folowing files in HTML
 Include folowing files in HTML
 
 ```html
-<script src="bower_components/gaia-list/gaia-dialog.js"></script>
-<script src="bower_components/gaia-list/gaia-dialog-select.js"></script>
+<script src="node_modules/fxos-component/fxos-component.js"></script>
+<script src="node_modules/fxos-list/fxos-dialog.js"></script>
+<script src="node_modules/fxos-list/fxos-dialog-select.js"></script>
 ```
 
 ### Usage
 
 ```html
-<gaia-dialog-select>
+<fxos-dialog-select>
   <h1>Ring tone</h1>
   <li>Classic prism</li>
   <li>Wallphone</li>
-</gaia-dialog-select>
+</fxos-dialog-select>
 ```
 
 #### Multiple Select
 
-Add `multiple` attribute in `gaia-dialog-select` element to enable multiple selection.
+Add `multiple` attribute in `fxos-dialog-select` element to enable multiple selection.
 
 ```html
-<gaia-dialog-select multiple>
+<fxos-dialog-select multiple>
   <h1>Ring tone</h1>
   <li>Classic prism</li>
   <li>Wallphone</li>
-</gaia-dialog-select>
+</fxos-dialog-select>
 ```
 
 ## Menu Dialog
@@ -108,26 +119,40 @@ Add `multiple` attribute in `gaia-dialog-select` element to enable multiple sele
 Include folowing files in HTML
 
 ```html
-<script src="bower_components/gaia-list/gaia-dialog.js"></script>
-<script src="bower_components/gaia-list/gaia-dialog-menu.js"></script>
+<script src="node_modules/fxos-component/fxos-component.js"></script>
+<script src="node_modules/fxos-list/fxos-dialog.js"></script>
+<script src="node_modules/fxos-list/fxos-dialog-menu.js"></script>
 ```
 
 ### Usage
 
 ```html
-<gaia-dialog-menu>
+<fxos-dialog-menu>
   <button data-icon="firefox">Open in new window</button>
   <button data-icon="firefox">Add to Home Screen</button>
   <button data-icon="firefox">Share link</button>
   <button data-icon="firefox">Settings</button>
-</gaia-dialog-menu>
+</fxos-dialog-menu>
 ```
-
 
 ## Examples
 
-- [Example](http://fxos-components.github.io/gaia-dialog/)
+- [Example](http://fxos-components.github.io/fxos-dialog/)
 
+## Readiness
+
+- [ ] Accessibility
+- [ ] Test Coverage
+- [ ] Performance
+- [ ] Visual/UX
+- [ ] RTL
+
+## Developing locally
+
+1. `git clone https://github.com/fxos-components/fxos-switch.git`
+2. `cd fxos-switch`
+3. `npm install` (NPM3)
+4. `npm start`
 
 ## Tests
 

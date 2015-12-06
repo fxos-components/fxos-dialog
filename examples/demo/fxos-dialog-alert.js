@@ -1,0 +1,1 @@
+../../fxos-dialog-alert.js

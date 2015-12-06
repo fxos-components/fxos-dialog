@@ -1,22 +1,20 @@
-/* global define */
-;(function(define){'use strict';define(function(require,exports,module){
 
 /**
  * Dependencies
  */
 
-var GaiaDialogProto = require('gaia-dialog').prototype;
-var component = require('gaia-component');
+var GaiaDialogProto = require('./fxos-dialog').prototype;
+var component = require('fxos-component');
 
 /**
  * Exports
  */
-module.exports = component.register('gaia-dialog-confirm', {
+module.exports = component.register('fxos-dialog-confirm', {
   created: function() {
     this.setupShadowRoot();
 
     this.els = {
-      dialog: this.shadowRoot.querySelector('gaia-dialog'),
+      dialog: this.shadowRoot.querySelector('fxos-dialog'),
       submit: this.shadowRoot.querySelector('.submit'),
       cancel: this.shadowRoot.querySelector('.cancel')
     };
@@ -37,7 +35,7 @@ module.exports = component.register('gaia-dialog-confirm', {
   },
 
   template: `
-    <gaia-dialog>
+    <fxos-dialog>
       <section>
         <p><content></content></p>
       </section>
@@ -45,7 +43,7 @@ module.exports = component.register('gaia-dialog-confirm', {
         <button class="cancel">Cancel</button>
         <button class="submit danger">Confirm</button>
       </fieldset>
-    </gaia-dialog>
+    </fxos-dialog>
 
     <style>
 
@@ -59,14 +57,9 @@ module.exports = component.register('gaia-dialog-confirm', {
       display: none;
     }
 
-    gaia-dialog section {
+    fxos-dialog section {
       max-width: 320px;
     }
 
     </style>`
 });
-
-});})(typeof define=='function'&&define.amd?define
-:(function(n,w){'use strict';return typeof module=='object'?function(c){
-c(require,exports,module);}:function(c){var m={exports:{}};c(function(n){
-return w[n];},m.exports,m);w[n]=m.exports;};})('gaia-dialog-confirm',this));
