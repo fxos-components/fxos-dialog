@@ -1,10 +1,10 @@
 {
-  "name": "gaia-dialog",
-  "homepage": "https://github.com/fxos-components/gaia-dialog",
+  "name": "fxos-dialog",
+  "homepage": "https://github.com/fxos-components/fxos-dialog",
   "authors": [
     "Wilson Page <wilsonpage@me.com>"
   ],
-  "main": "gaia-dialog.js",
+  "main": "fxos-dialog.js",
   "license": "MIT",
   "ignore": [
     "**/.*",
@@ -14,21 +14,12 @@
     "tests",
     "index.html",
     "package.json",
+    "webpack.config.json",
     "README.md"
   ],
-  "devDependencies": {
-    "base": "fxos-components/base",
-    "pressed": "fxos-components/pressed",
-    "gaia-fonts": "fxos-components/gaia-fonts",
-    "gaia-theme": "fxos-components/gaia-theme",
-    "gaia-button": "fxos-components/gaia-button"
-  },
   "dependencies": {
-    "gaia-text-input": "fxos-components/gaia-text-input",
-    "gaia-icons": "fxos-components/gaia-icons#^1.0.0",
-    "gaia-component": "fxos-components/gaia-component#0.6.0"
-  },
-  "resolutions": {
-    "gaia-component": "~0.6.0"
+    "fxos-text-input": "fxos-components/fxos-text-input",
+    "fxos-icons": "fxos-components/fxos-icons#~2.0.0",
+    "fxos-component": "fxos-components/fxos-component#~1.0.0"
   }
 }

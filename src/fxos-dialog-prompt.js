@@ -1,25 +1,23 @@
-/* global define */
-;(function(define){'use strict';define(function(require,exports,module){
 
 /**
  * Dependencies
  */
 
-var GaiaDialogProto = require('gaia-dialog').prototype;
-var component = require('gaia-component');
+var GaiaDialogProto = require('./fxos-dialog').prototype;
+var component = require('fxos-component');
 
-require('gaia-text-input');
+require('fxos-text-input');
 
 /**
  * Exports
  */
-module.exports = component.register('gaia-dialog-prompt', {
+module.exports = component.register('fxos-dialog-prompt', {
   created: function() {
     this.setupShadowRoot();
 
     this.els = {
-      dialog: this.shadowRoot.querySelector('gaia-dialog'),
-      input: this.shadowRoot.querySelector('gaia-text-input'),
+      dialog: this.shadowRoot.querySelector('fxos-dialog'),
+      input: this.shadowRoot.querySelector('fxos-text-input'),
       submit: this.shadowRoot.querySelector('.submit'),
       cancel: this.shadowRoot.querySelector('.cancel')
     };
@@ -48,33 +46,25 @@ module.exports = component.register('gaia-dialog-prompt', {
   },
 
   template: `
-    <gaia-dialog>
-      <div><gaia-text-input></gaia-text-input></div>
+    <fxos-dialog>
+      <div><fxos-text-input clearable></fxos-text-input></div>
       <fieldset>
         <button class="cancel">Cancel</button>
         <button class="submit primary">Ok</button>
       </fieldset>
-    </gaia-dialog>
-
+    </fxos-dialog>
     <style>
+      :host {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: 999;
 
-    :host {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: 999;
+        display: none;
+      }
 
-      display: none;
-    }
-
-    gaia-text-input {
-      margin: 16px !important;
-    }
-
+      fxos-text-input {
+        margin: 16px !important;
+      }
     </style>`
 });
-
-});})(typeof define=='function'&&define.amd?define
-:(function(n,w){'use strict';return typeof module=='object'?function(c){
-c(require,exports,module);}:function(c){var m={exports:{}};c(function(n){
-return w[n];},m.exports,m);w[n]=m.exports;};})('gaia-dialog-prompt',this));

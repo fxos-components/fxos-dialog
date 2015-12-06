@@ -4,9 +4,17 @@
   "homepage": "https://github.com/fxos-components/gaia-dialog",
   "license": "MIT",
   "main": "gaia-dialog.js",
+  "browser": "src/gaia-dialog.js",
+  "dependencies": {
+    "fxos-component": "^1.0.0",
+    "fxos-icons": "^2.0.0",
+    "fxos-text-input": "^1.0.1"
+  },
   "devDependencies": {
-    "bower": "^1.4.1",
     "chai": "^3.4.1",
+    "fxos-button": "^1.0.0",
+    "fxos-font": "^1.0.0",
+    "fxos-theme": "*",
     "jshint": "^2.9.1-rc1",
     "karma": "^0.13.15",
     "karma-chai-sinon": "^0.1.5",
@@ -19,15 +27,17 @@
     "mozilla-download": "^1.1.1",
     "sinon": "^1.17.2",
     "sinon-chai": "^2.8.0",
-    "test-utils": "fxos-components/test-utils"
+    "test-utils": "github:fxos-components/test-utils"
   },
   "scripts": {
-    "postinstall": "bower install",
+    "start": "npm run -s watch & nws -p 8005 -d examples/demo/ -o",
     "test-lint": "./node_modules/jshint/bin/jshint gaia-dialog*.js",
     "test-unit": "./node_modules/karma/bin/karma start test/karma.conf.js --single-run",
     "test-integration": "./node_modules/.bin/marionette-mocha --reporter spec --host marionette-firefox-host --runtime $FIREFOX_NIGHTLY_BIN --timeout 6000s test/test-integration.js",
     "test-unit-dev": "./node_modules/karma/bin/karma start test/karma.conf.js",
-    "test": "npm run test-lint && npm run test-unit && npm run test-integration"
+    "test": "npm run -s test-lint && npm run -s test-unit && npm run -s test-integration",
+    "build": "webpack",
+    "watch": "webpack -w"
   },
   "repository": {
     "type": "git",
@@ -35,8 +45,5 @@
   },
   "bugs": {
     "url": "https://github.com/fxos-components/gaia-dialog/issues"
-  },
-  "browser": {
-    "gaia-component": "./bower_components/gaia-component/gaia-component.js"
   }
 }
