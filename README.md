@@ -20,8 +20,8 @@ Include folowing files in HTML
 
 ```html
 <script src="node_modules/fxos-component/fxos-component.js"></script>
-<script src="node_modules/fxos-list/fxos-dialog.js"></script>
-<script src="node_modules/fxos-list/fxos-dialog-alert.js"></script>
+<script src="node_modules/fxos-dialog/fxos-dialog.js"></script>
+<script src="node_modules/fxos-dialog/fxos-dialog-alert.js"></script>
 ```
 
 ### Usage
@@ -36,8 +36,8 @@ Include folowing files in HTML
 
 ```html
 <script src="node_modules/fxos-component/fxos-component.js"></script>
-<script src="node_modules/fxos-list/fxos-dialog.js"></script>
-<script src="node_modules/fxos-list/fxos-dialog-confirm.js"></script>
+<script src="node_modules/fxos-dialog/fxos-dialog.js"></script>
+<script src="node_modules/fxos-dialog/fxos-dialog-confirm.js"></script>
 ```
 
 ### Usage
@@ -52,8 +52,8 @@ Include folowing files in HTML
 
 ```html
 <script src="node_modules/fxos-component/fxos-component.js"></script>
-<script src="node_modules/fxos-list/fxos-dialog.js"></script>
-<script src="node_modules/fxos-list/fxos-dialog-prompt.js"></script>
+<script src="node_modules/fxos-dialog/fxos-dialog.js"></script>
+<script src="node_modules/fxos-dialog/fxos-dialog-prompt.js"></script>
 ```
 
 ### Usage
@@ -68,8 +68,8 @@ Include folowing files in HTML
 
 ```html
 <script src="node_modules/fxos-component/fxos-component.js"></script>
-<script src="node_modules/fxos-list/fxos-dialog.js"></script>
-<script src="node_modules/fxos-list/fxos-dialog-action.js"></script>
+<script src="node_modules/fxos-dialog/fxos-dialog.js"></script>
+<script src="node_modules/fxos-dialog/fxos-dialog-action.js"></script>
 ```
 
 ### Usage
@@ -88,8 +88,8 @@ Include folowing files in HTML
 
 ```html
 <script src="node_modules/fxos-component/fxos-component.js"></script>
-<script src="node_modules/fxos-list/fxos-dialog.js"></script>
-<script src="node_modules/fxos-list/fxos-dialog-select.js"></script>
+<script src="node_modules/fxos-dialog/fxos-dialog.js"></script>
+<script src="node_modules/fxos-dialog/fxos-dialog-select.js"></script>
 ```
 
 ### Usage
@@ -120,8 +120,8 @@ Include folowing files in HTML
 
 ```html
 <script src="node_modules/fxos-component/fxos-component.js"></script>
-<script src="node_modules/fxos-list/fxos-dialog.js"></script>
-<script src="node_modules/fxos-list/fxos-dialog-menu.js"></script>
+<script src="node_modules/fxos-dialog/fxos-dialog.js"></script>
+<script src="node_modules/fxos-dialog/fxos-dialog-menu.js"></script>
 ```
 
 ### Usage
