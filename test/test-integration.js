@@ -124,25 +124,24 @@ marionette('fxos-dialog', function() {
         'assistive technology.');
     });
 
-    // TODO: Needs fixing and re-enabling
-    // testActions('select fxos-dialog controls are accessible', function(action) {
-    //   var dialog = dialogs[1];
-    //   openDialog(dialog.selector);
+    testActions('select fxos-dialog controls are accessible', function(action) {
+      var dialog = dialogs[1];
+      openDialog(dialog.selector);
 
-    //   // Click to close dialog
-    //   var dialogElement = client.helper.waitForElement(dialog.selector);
-    //   client.switchToShadowRoot(dialogElement);
-    //   failOnA11yError(function() {
-    //     client.helper.waitForElement('.cancel')[action]();
-    //   }, 'fxos-dialog-select cancel element should be accessible (no error' +
-    //     'thrown when clicking and tapping');
-    //   client.switchToShadowRoot();
+      // Click to close dialog
+      var dialogElement = client.helper.waitForElement(dialog.selector);
+      client.switchToShadowRoot(dialogElement);
+      failOnA11yError(function() {
+        client.helper.waitForElement('.cancel')[action]();
+      }, 'fxos-dialog-select cancel element should be accessible (no error' +
+        'thrown when clicking and tapping');
+      client.switchToShadowRoot();
 
-    //   failOnA11yError(function() {
-    //     client.helper.waitForElementToDisappear(dialog.selector);
-    //   }, 'fxos-dialog element should be hidden both normally and from ' +
-    //     'assistive technology.');
-    // });
+      failOnA11yError(function() {
+        client.helper.waitForElementToDisappear(dialog.selector);
+      }, 'fxos-dialog element should be hidden both normally and from ' +
+        'assistive technology.');
+    });
 
     testActions('multiselect fxos-dialog controls are accessible',
       function(action) {
